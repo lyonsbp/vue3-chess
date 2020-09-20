@@ -6,7 +6,7 @@
         :key="col"
         class="cell"
         :class="{ colored: isColored(row, col) }"
-        :pieceSymbol="piecesMap[row][col]"
+        :pieceSymbol="piecesMap[row - 1][col - 1]"
       ></Cell>
     </template>
   </div>
@@ -42,7 +42,7 @@ export default {
   width: 100%;
 }
 .colored {
-  background-color: black;
+  background-color: lightgray;
 }
 .board {
   --board-size: 25px;

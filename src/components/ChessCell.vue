@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="symbol-text">
     {{ pieceSymbol }}
   </div>
 </template>
@@ -15,4 +15,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.symbol-text {
+  color: red;
+  font-weight: bold;
+}
+</style>
