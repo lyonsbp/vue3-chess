@@ -18,7 +18,10 @@ export default {
   components: {
     Cell
   },
-  props: ["boardSize", "piecesMap"],
+  props: {
+    boardSize: Number,
+    piecesMap: Array
+  },
   setup(props) {
     function isColored(row, col) {
       const colIsOdd = col % 2;
