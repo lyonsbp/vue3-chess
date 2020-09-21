@@ -17,28 +17,91 @@ export default {
     for (let i = 0; i < boardSize; i++) {
       piecesMap[i] = [];
       for (let j = 0; j < boardSize; j++) {
-        if (i === 1 || i === 6) piecesMap[i][j] = "P";
-        else if (i === 0) {
-          if (j === 0) piecesMap[i][j] = "R";
-          if (j === 1) piecesMap[i][j] = "N";
-          if (j === 2) piecesMap[i][j] = "B";
-          if (j === 3) piecesMap[i][j] = "Q";
-          if (j === 4) piecesMap[i][j] = "K";
-          if (j === 5) piecesMap[i][j] = "B";
-          if (j === 6) piecesMap[i][j] = "N";
-          if (j === 7) piecesMap[i][j] = "R";
+        const piece = {
+          symbol: "",
+          name: "",
+          owner: null
+        };
+        if (i === 1) {
+          piece.owner = 1;
+          piece.symbol = "P";
+          piece.name = "Pawn";
+        } else if (i === 6) {
+          piece.owner = 2;
+          piece.symbol = "P";
+          piece.name = "Pawn";
+        } else if (i === 0) {
+          piece.owner = 1;
+          if (j === 0) {
+            piece.symbol = "R";
+            piece.name = "Rook";
+          }
+          if (j === 1) {
+            piece.symbol = "N";
+            piece.name = "Knight";
+          }
+          if (j === 2) {
+            piece.symbol = "B";
+            piece.name = "Bishop";
+          }
+          if (j === 3) {
+            piece.symbol = "Q";
+            piece.name = "Queen";
+          }
+          if (j === 4) {
+            piece.symbol = "K";
+            piece.name = "King";
+          }
+          if (j === 5) {
+            piece.symbol = "B";
+            piece.name = "Bishop";
+          }
+          if (j === 6) {
+            piece.symbol = "N";
+            piece.name = "Knight";
+          }
+          if (j === 7) {
+            piece.symbol = "R";
+            piece.name = "Rook";
+          }
         } else if (i === 7) {
-          if (j === 0) piecesMap[i][j] = "R";
-          if (j === 1) piecesMap[i][j] = "N";
-          if (j === 2) piecesMap[i][j] = "B";
-          if (j === 3) piecesMap[i][j] = "K";
-          if (j === 4) piecesMap[i][j] = "Q";
-          if (j === 5) piecesMap[i][j] = "B";
-          if (j === 6) piecesMap[i][j] = "N";
-          if (j === 7) piecesMap[i][j] = "R";
+          piece.owner = 2;
+          if (j === 0) {
+            piece.symbol = "R";
+            piece.name = "Rook";
+          }
+          if (j === 1) {
+            piece.symbol = "N";
+            piece.name = "Knight";
+          }
+          if (j === 2) {
+            piece.symbol = "B";
+            piece.name = "Bishop";
+          }
+          if (j === 3) {
+            piece.symbol = "K";
+            piece.name = "King";
+          }
+          if (j === 4) {
+            piece.symbol = "Q";
+            piece.name = "Queen";
+          }
+          if (j === 5) {
+            piece.symbol = "B";
+            piece.name = "Bishop";
+          }
+          if (j === 6) {
+            piece.symbol = "N";
+            piece.name = "Knight";
+          }
+          if (j === 7) {
+            piece.symbol = "R";
+            piece.name = "Rook";
+          }
         } else {
           piecesMap[i][j] = "";
         }
+        piecesMap[i][j] = piece;
       }
     }
 

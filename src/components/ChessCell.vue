@@ -1,13 +1,13 @@
 <template>
-  <div class="symbol-text">
-    {{ pieceSymbol }}
+  <div class="symbol-text" :class="piece.owner === 1 ? 'player-1' : 'player-2'">
+    {{ piece.symbol }}
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    pieceSymbol: String
+    piece: Object
   },
   setup() {
     return {};
@@ -17,7 +17,12 @@ export default {
 
 <style>
 .symbol-text {
-  color: red;
   font-weight: bold;
+}
+.player-1 {
+  color: red;
+}
+.player-2 {
+  color: black;
 }
 </style>

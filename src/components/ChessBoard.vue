@@ -6,7 +6,7 @@
         :key="col"
         class="cell"
         :class="{ colored: isColored(row, col) }"
-        :pieceSymbol="piecesMap[row - 1][col - 1]"
+        :piece="piecesMap[row - 1][col - 1]"
       ></Cell>
     </template>
   </div>
