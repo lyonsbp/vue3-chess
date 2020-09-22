@@ -6,12 +6,14 @@
       :gameState="gameState"
       @cell-clicked="handleClick"
     />
+    <button @click="switchTurn">Switch Turn</button>
   </div>
 </template>
 
 <script>
 import ChessBoard from "@/components/ChessBoard";
 import InfoBoard from "@/components/InfoBoard";
+import { ref } from "vue";
 export default {
   name: "Chess",
   components: {
@@ -20,16 +22,39 @@ export default {
   },
   methods: {
     handleClick({ row, col, piece }) {
-      console.log({ row, col, piece });
+      this.clearActivePieces();
       if (piece.owner === this.gameState.currentPlayer) {
         const player = piece.owner;
-        console.log(player, "this is my piece");
         if (player === 1) {
           if (piece.symbol === "P") {
-            console.log();
+            if (row === 1) {
+              if (this.gameState.piecesMap[row + 1][col]["owner"] === null)
+                this.gameState.piecesMap[row + 1][col]["cellActive"] = true;
+              if (this.gameState.piecesMap[row + 2][col]["owner"] === null)
+                this.gameState.piecesMap[row + 2][col]["cellActive"] = true;
+            }
+          }
+        } else if (player === 2) {
+          if (piece.symbol === "P") {
+            if (row === 6) {
+              if (this.gameState.piecesMap[row - 1][col]["owner"] === null)
+                this.gameState.piecesMap[row - 1][col]["cellActive"] = true;
+              if (this.gameState.piecesMap[row - 2][col]["owner"] === null)
+                this.gameState.piecesMap[row - 2][col]["cellActive"] = true;
+            }
           }
         }
       }
+    },
+    clearActivePieces() {
+      for (const row of this.gameState.piecesMap) {
+        for (const piece of row) {
+          piece.cellActive = false;
+        }
+      }
+    },
+    switchTurn() {
+      this.gameState.currentPlayer = this.gameState.currentPlayer === 1 ? 2 : 1;
     }
   },
   setup() {
@@ -147,13 +172,14 @@ export default {
       }
     }
 
-    const gameState = {
+    const gameState = ref({
       currentPlayer: 1,
       isPlayer1InCheck: false,
       isPlayer2InCheck: false,
       piecesMap
-    };
+    });
 
+    console.log("gameState", gameState.value);
     return {
       boardSize,
       gameState

@@ -7,8 +7,8 @@
         class="cell"
         :class="{ colored: isColored(row, col) }"
         :piece="gameState.piecesMap[row - 1][col - 1]"
-        :row="row"
-        :col="col"
+        :row="row - 1"
+        :col="col - 1"
         @cell-clicked="$emit('cell-clicked', $event)"
       ></Cell>
     </template>
