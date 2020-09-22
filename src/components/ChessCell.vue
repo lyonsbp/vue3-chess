@@ -1,7 +1,11 @@
 <template>
   <div
     class="symbol-text"
-    :class="piece.owner === 1 ? 'player-1' : 'player-2'"
+    :class="{
+      'player-1': piece.owner === 1,
+      'player-2': piece.owner === 2,
+      active: piece.cellActive
+    }"
     @click="$emit('cell-clicked', { row, col, piece })"
   >
     {{ piece.symbol }}
@@ -30,5 +34,10 @@ export default {
 }
 .player-2 {
   color: black;
+}
+.active {
+  background-color: lightskyblue !important;
+  outline: 1px solid black;
+  outline-offset: -1px;
 }
 </style>
