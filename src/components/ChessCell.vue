@@ -1,5 +1,9 @@
 <template>
-  <div class="symbol-text" :class="piece.owner === 1 ? 'player-1' : 'player-2'">
+  <div
+    class="symbol-text"
+    :class="piece.owner === 1 ? 'player-1' : 'player-2'"
+    @click="$emit('cell-clicked', { row, col, piece })"
+  >
     {{ piece.symbol }}
   </div>
 </template>
@@ -7,7 +11,9 @@
 <script>
 export default {
   props: {
-    piece: Object
+    piece: Object,
+    row: Number,
+    col: Number
   },
   setup() {
     return {};

@@ -1,12 +1,15 @@
 <template>
-  <div class="board" v-if="piecesMap[0]">
+  <div class="board" v-if="gameState.piecesMap[0]">
     <template v-for="row in boardSize" :key="row">
       <Cell
         v-for="col in boardSize"
         :key="col"
         class="cell"
         :class="{ colored: isColored(row, col) }"
-        :piece="piecesMap[row - 1][col - 1]"
+        :piece="gameState.piecesMap[row - 1][col - 1]"
+        :row="row"
+        :col="col"
+        @cell-clicked="$emit('cell-clicked', $event)"
       ></Cell>
     </template>
   </div>
@@ -20,17 +23,15 @@ export default {
   },
   props: {
     boardSize: Number,
-    piecesMap: Array
+    gameState: Object
   },
-  setup(props) {
+  setup() {
     function isColored(row, col) {
       const colIsOdd = col % 2;
       const rowIsOdd = row % 2;
 
       return rowIsOdd ? colIsOdd : !colIsOdd;
     }
-
-    console.log(props.piecesMap);
 
     return {
       isColored
